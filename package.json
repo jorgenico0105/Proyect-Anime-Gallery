@@ -1,0 +1,47 @@
+{
+  "name": "one-piece-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@coreui/coreui": "^5.1.2",
+    "@coreui/react": "^5.3.0",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@heroicons/react": "^2.1.5",
+    "@mui/base": "^5.0.0-beta.40",
+    "@mui/material": "^6.0.1",
+    "animate.css": "^4.1.1",
+    "axios": "^1.7.6",
+    "framer-motion": "^11.3.31",
+    "react": "^18.3.1",
+    "react-animate-on-scroll": "^2.1.9",
+    "react-dom": "^18.3.1",
+    "react-magic-motion": "^1.1.2",
+    "react-router-dom": "^6.26.1",
+    "rels": "^0.4.3",
+    "swiper": "^11.1.11",
+    "zod": "^3.23.8",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@types/react": "^18.3.3",
+    "@types/react-animate-on-scroll": "^2.1.8",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^9.9.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "globals": "^15.9.0",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.0.1",
+    "vite": "^5.4.1"
+  }
+}
