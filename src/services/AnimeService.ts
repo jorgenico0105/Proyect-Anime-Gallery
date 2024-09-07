@@ -2,6 +2,7 @@ import axios from "axios"
 import { animeByGenderSchema, animeFindSchema, animeSchema, listSchema } from "../schemas/animeSchema"
 import { AnimeByGenderType, AnimeLookType } from "../types"
 
+
 export async function fetchAnime(){
     const url='https://api.jikan.moe/v4/anime?limit=12'
     const {data:{data}}=await axios(url)

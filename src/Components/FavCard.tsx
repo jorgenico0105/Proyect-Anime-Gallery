@@ -1,6 +1,7 @@
 import { CCard, CCardImage, CCardBody, CCardTitle, CCardText } from '@coreui/react';
 import { FavoriteAnimeType } from '../types';
 import { useAppStore } from "../store/useAppStore";
+import {toast} from 'sonner'
 
 type FavProps={
     anime:FavoriteAnimeType
@@ -8,10 +9,19 @@ type FavProps={
 
 
 export default function FavCard({anime}:FavProps) {
-    const {handleClickFav}=useAppStore()
+    const {handleClickFav,favoExist}=useAppStore()
     
     const handleClick=(anime:FavoriteAnimeType)=>{
         handleClickFav(anime)
+        toast.success(`${favoExist(anime.mal_id) ? 'Added': 'Removed'} from favorites`,{
+          position:'bottom-center',
+          duration: 1000,
+          style:{
+              background:'green',
+              height:'80px',
+              fontSize:'20px'
+          }
+      })
        }
   return (
     <>

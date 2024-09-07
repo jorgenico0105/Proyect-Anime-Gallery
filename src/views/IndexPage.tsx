@@ -6,6 +6,8 @@
   import { useState } from "react";
   import TransitionsModal from "../Components/Modal";
   import { FavoriteAnimeType } from "../types";
+  import { toast } from 'sonner';
+
 
   export default function IndexPage() {
     const { animeShow, animefind, looking,listAnime,getAnimeByGender,lookingG,animesByGender,setLookinByGender,isNotLooking,handleClickFav,favoExist } = useAppStore();
@@ -23,7 +25,15 @@
     const handleSubmit=(e: React.FormEvent<HTMLFormElement>)=>{
       e.preventDefault()
       if(Object.values(filter).includes(0)){
-        console.log('Ingrese la categoria')
+        toast.error('Enter anime category',{
+          position:'bottom-center',
+          duration: 1000,
+          style:{
+              background:'red',
+              height:'80px',
+              fontSize:'20px'
+          }
+      })
         return
       }
       
@@ -33,7 +43,16 @@
       setFilter({
         idgender:0
       })
-      
+      toast.error(`Loking animes whit the category`,{
+        position:'bottom-center',
+        duration: 1000,
+        style:{
+            background:'green',
+            height:'80px',
+            fontSize:'20px'
+        }
+    })
+    
     }
     const handleOpenModal = (anime:FavoriteAnimeType) => {
       setModalContent({
@@ -46,6 +65,15 @@
 
     const handleClick=(anime:FavoriteAnimeType)=>{
     handleClickFav(anime)
+    toast.success(`${favoExist(anime.mal_id) ? 'Added': 'Removed'} from favorites`,{
+      position:'bottom-center',
+      duration: 1000,
+      style:{
+          background:'green',
+          height:'80px',
+          fontSize:'20px'
+      }
+  })
     }
     return (
       <>

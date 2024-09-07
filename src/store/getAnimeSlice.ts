@@ -1,7 +1,7 @@
 import { StateCreator } from "zustand"
 import { fetchAnime, findAnime,fetchListAnime,fetchAnimeBygender } from "../services/AnimeService"
 import { AnimeByGenderType, AnimeFindType, AnimeList, AnimeLookType, AnimeResByGenderType, AnimeShowType } from "../types"
-
+import {toast} from 'sonner'
 
 export type AnimeType={
    animeShow:AnimeShowType,
@@ -30,13 +30,23 @@ export const createAnime: StateCreator<AnimeType>=(set)=>({
       },
       animesByGender:[] as AnimeResByGenderType,
       
-   showAnimes:async ()=>{
-    const animeShow=await fetchAnime()
-    console.log(animeShow)
-    set({
-        animeShow,
-    })
-   },
+      showAnimes: async () => {
+        toast.promise(
+          fetchAnime().then((animeShow) => {
+            set({ animeShow });
+            
+          }),
+          {
+            loading: 'Loading animes...',
+            success: 'Sucess! to add your favorite animes, double click on the cards! Same way to remove them!',
+            position:'bottom-center',
+            style:{
+                height:'80px',
+                fontSize:'15px'
+            }
+          }
+        );
+      },
    getAnimes:async(anime)=>{
         const animefind=await findAnime(anime)
         set({

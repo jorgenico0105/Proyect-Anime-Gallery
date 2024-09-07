@@ -2,16 +2,25 @@ import { useState } from "react"
 import {NavLink} from "react-router-dom"
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { useAppStore } from "../store/useAppStore"
+import { toast } from 'sonner';
 
 export default function Header() {
-    const {getAnimes,isAnimeLooking,isNotLooking,setNotLookinByGender,showNoti}=useAppStore()
+    const {getAnimes,isAnimeLooking,isNotLooking,setNotLookinByGender}=useAppStore()
     const [animeSearch,setAnimeSearch]=useState({
         anime:''
     })
     const handleSubmit=(e: React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
         if(Object.values(animeSearch).includes('')){
-            showNoti({text:'All fields are required',error:true})
+            toast.error('Enter anime name',{
+                position:'bottom-center',
+                duration: 1000,
+                style:{
+                    background:'red',
+                     height:'80px',
+                    fontSize:'20px'
+                }
+            })
             return
         }
         getAnimes(animeSearch)
@@ -20,7 +29,16 @@ export default function Header() {
         })
         isAnimeLooking()
         setNotLookinByGender()
-        showNoti({text:'Looking Animes',error:false})
+        toast.success('Looking for anime results!',{
+            position:'bottom-center',
+            duration: 1000,
+            style:{
+                background:'green',
+                height:'80px',
+                fontSize:'20px'
+            }
+        }
+            );
     }
     const handleChange=(e: React.ChangeEvent<HTMLInputElement>)=>{
         setAnimeSearch({
