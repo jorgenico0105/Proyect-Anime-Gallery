@@ -18,25 +18,10 @@ export type AnimeType={
    getAnimeByGender:(filter:AnimeByGenderType)=>void
    setLookinByGender:()=>void
    setNotLookinByGender:()=>void
+
 }
 export const createAnime: StateCreator<AnimeType>=(set)=>({
-   animeShow:{data: [
-    {
-        images: {
-            jpg: {
-                image_url: "" 
-            }
-        },
-        title_english: "", 
-        title_japanese:'',
-        episodes: 0, 
-        score: 0,
-        synopsis: "" ,
-        genres:[{
-          name:'',
-        }]
-    }
-]},
+   animeShow:[] as AnimeShowType,
     looking:false,
     lookingG:false,
     animefind:[] as AnimeFindType,
@@ -44,6 +29,7 @@ export const createAnime: StateCreator<AnimeType>=(set)=>({
         data: []
       },
       animesByGender:[] as AnimeResByGenderType,
+      
    showAnimes:async ()=>{
     const animeShow=await fetchAnime()
     console.log(animeShow)
@@ -88,5 +74,5 @@ export const createAnime: StateCreator<AnimeType>=(set)=>({
         set({
             lookingG:false
         })
-   }
+   },
 })

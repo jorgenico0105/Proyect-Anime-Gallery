@@ -1,26 +1,25 @@
 import { z } from "zod";
 
-export const animeSchema = z.object({
-  data: z.array(
-    z.object({
-      images: z.object({
-        jpg: z.object({
-          image_url: z.string(),
-        }),
+export const animeSchema = z.array(
+  z.object({
+    mal_id:z.number(),
+    images: z.object({
+      jpg: z.object({
+        image_url: z.string(),
       }),
-      title_english: z.string().nullable(),  
-      title_japanese: z.string().nullable(),  
-      episodes: z.number().nullable(),        
-      score: z.number().nullable(),           
-      synopsis: z.string().nullable(),      
-      genres: z.array(
-        z.object({
-          name: z.string(),
-        })
-      )  
-    })
-  ),
-});
+    }),
+    title_english: z.string().nullable(),  
+    title_japanese: z.string().nullable(),  
+    episodes: z.number().nullable(),        
+    score: z.number().nullable(),           
+    synopsis: z.string().nullable(),  
+    genres: z.array(
+      z.object({
+        name: z.string(),
+      })
+    )        
+  })
+);
 
 export const animeLookSchema = z.object({
   anime: z.string(),
@@ -28,6 +27,7 @@ export const animeLookSchema = z.object({
 
 export const animeFindSchema = z.array(
   z.object({
+    mal_id:z.number(),
     images: z.object({
       jpg: z.object({
         image_url: z.string(),
@@ -60,6 +60,7 @@ export const getAnimeListSchema = z.object({
 });
 export const animeByGenderSchema = z.array(
   z.object({
+    mal_id:z.number(),
     images: z.object({
       jpg: z.object({
         image_url: z.string(),
@@ -77,3 +78,23 @@ export const animeByGenderSchema = z.array(
     )        
   })
 );
+export const favoriteAnimeSchema = 
+  z.object({
+    mal_id:z.number(),
+    images: z.object({
+      jpg: z.object({
+        image_url: z.string(),
+      }),
+    }),
+    title_english: z.string().nullable(),  
+    title_japanese: z.string().nullable(),  
+    episodes: z.number().nullable(),        
+    score: z.number().nullable(),           
+    synopsis: z.string().nullable(),  
+    genres: z.array(
+      z.object({
+        name: z.string(),
+      })
+    )        
+  });
+  export const favoriteAnimesSchema = z.array(favoriteAnimeSchema);

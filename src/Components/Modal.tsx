@@ -10,10 +10,13 @@ interface TransitionsModalProps {
 }
 
 export default function TransitionsModal({
+
   open,
   handleClose,
   description,
 }: TransitionsModalProps) {
+
+ 
   return (
     <div>
       <Modal
@@ -32,9 +35,7 @@ export default function TransitionsModal({
             <p id="transition-modal-description" className="modal-description">
               {description}
             </p>
-            <button className='fav-but'>
-                Add to favorites 
-            </button>
+           
           </ModalContent>
         </Fade>
       </Modal>
@@ -102,7 +103,7 @@ const ModalContent = styled('div')(
     flex-direction: column;
     gap: 8px;
     overflow: hidden;
-    background-color: #141726;
+    background-color: #343B4B;
     border-radius: 8px;
     
     box-shadow: 0 4px 12px

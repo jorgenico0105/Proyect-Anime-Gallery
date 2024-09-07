@@ -1,9 +1,21 @@
-import { CCard, CCardImage, CCardBody, CCardTitle, CCardText, CButton } from '@coreui/react';
+import { CCard, CCardImage, CCardBody, CCardTitle, CCardText } from '@coreui/react';
+import { FavoriteAnimeType } from '../types';
+import { useAppStore } from "../store/useAppStore";
 
-export default function FindCard() {
+type FavProps={
+    anime:FavoriteAnimeType
+}
+
+
+export default function FavCard({anime}:FavProps) {
+    const {handleClickFav}=useAppStore()
+    
+    const handleClick=(anime:FavoriteAnimeType)=>{
+        handleClickFav(anime)
+       }
   return (
     <>
-        <CCard key={anime.synopsis} className='card-container '>
+            <CCard key={anime.mal_id} className='card-container animate__animated animate__zoomIn' onDoubleClick={()=>handleClick(anime)}>
               <CCardImage orientation="top" src={anime.images.jpg.image_url} className='card-img' />
               <CCardBody>
                 <CCardTitle className="anime-title">
@@ -13,7 +25,7 @@ export default function FindCard() {
                   <p>Episodes: <span>{anime.episodes}</span></p>
                   <p>Score: <span>{anime.score}</span></p>
                 </CCardText>
-                <CButton className="anime-button">See synopsis</CButton>
+               
               </CCardBody>
             </CCard>
     </>

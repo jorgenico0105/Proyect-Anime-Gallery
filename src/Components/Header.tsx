@@ -4,13 +4,14 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { useAppStore } from "../store/useAppStore"
 
 export default function Header() {
-    const {getAnimes,isAnimeLooking,isNotLooking,setNotLookinByGender}=useAppStore()
+    const {getAnimes,isAnimeLooking,isNotLooking,setNotLookinByGender,showNoti}=useAppStore()
     const [animeSearch,setAnimeSearch]=useState({
         anime:''
     })
     const handleSubmit=(e: React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
         if(Object.values(animeSearch).includes('')){
+            showNoti({text:'All fields are required',error:true})
             return
         }
         getAnimes(animeSearch)
@@ -19,6 +20,7 @@ export default function Header() {
         })
         isAnimeLooking()
         setNotLookinByGender()
+        showNoti({text:'Looking Animes',error:false})
     }
     const handleChange=(e: React.ChangeEvent<HTMLInputElement>)=>{
         setAnimeSearch({

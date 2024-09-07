@@ -2,13 +2,17 @@ import {Outlet} from 'react-router-dom'
 import Header from './Header';
 import { useEffect} from 'react';
 import { useAppStore } from '../store/useAppStore';
+import Notification from './Noti';
 export default function Layout() {
-  const {showAnimes,listGender}=useAppStore()
+  const {showAnimes,listGender,loadFromStorage}=useAppStore()
   useEffect(()=>{
     showAnimes()
   },[])
   useEffect(()=>{
     listGender()
+  },[])
+  useEffect(()=>{
+    loadFromStorage()
   },[])
   return (
     <>
@@ -16,7 +20,7 @@ export default function Layout() {
             <main className='container'>
                 <Outlet></Outlet>
             </main>
-      
+            <Notification></Notification>
     </>
   )
 }

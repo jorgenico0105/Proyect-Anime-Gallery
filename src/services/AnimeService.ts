@@ -4,7 +4,7 @@ import { AnimeByGenderType, AnimeLookType } from "../types"
 
 export async function fetchAnime(){
     const url='https://api.jikan.moe/v4/anime?limit=12'
-    const {data}=await axios(url)
+    const {data:{data}}=await axios(url)
     const result=animeSchema.safeParse(data)
     if (result.success){    
         return result.data
@@ -29,9 +29,9 @@ export async function fetchListAnime(){
 export async function fetchAnimeBygender(gender:AnimeByGenderType){
     const url=`https://api.jikan.moe/v4/anime?genres=${gender.idgender}`
     const {data:{data}}=await axios(url)
+    console.log(data)
     const result=animeByGenderSchema.safeParse(data)
     if(result.success){
-        console.log(result)
         return result.data
     }
   }
